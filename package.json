@@ -1,0 +1,24 @@
+{
+  "name": "workspace",
+  "version": "1.0.0",
+  "description": "json for homevisit",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jessBlok/homevisit_project.git"
+  },
+  "author": "Jess B",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jessBlok/homevisit_project/issues"
+  },
+  "homepage": "https://github.com/jessBlok/homevisit_project#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  },
+  "devDependencies": {}
+}
