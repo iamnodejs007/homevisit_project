@@ -51,14 +51,44 @@ app.get('/tours', function(req, res, next) {
   });
 });
 
+app.get('/tours/:id', function(req, res, next) {
+  Tour.findByID(function (err, tours) {
+    if (err) return next(err);
+    res.json(tours);
+  });
+});
+
+
 //Post A New Tour to Database
 
-app.post ('/tours', function (req, res) {
-          console.log (req.body);
-            res.json({ message: 'Tour created!' });
-    
-        
+app.post('/tours', function(req, res) {
+  
+  var tour = new Tour({
+                      //need to add an email here 
+                      name: req.body.name,
+                      neighborhood: req.body.neighborhood,
+                      city: req.body.city,
+                      duration: req.body.duration,
+                      image:req.body.image,
+                      
+                    });
+
+
+    tour.save(function(err,resp) {
+        if(err) {
+            console.log(err);
+            res.send({
+                message :'something went wrong'
+            });
+        } else {
+            res.send({
+                message:'the tour has bees saved'
+            });
+        }           
+
     });
+})
+
 
 
 // //GET TOUR DATA FROM DATABASE AND SHOW IT TO READER
