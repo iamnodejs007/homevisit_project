@@ -1,29 +1,115 @@
 //Initialize npm packages
 
 var express = require("express");
-
+var mongoose= require ("mongoose");
+var bodyParser = require ("body-parser");
 var app = express();
+// var router  = express.Router ();
+var Schema = mongoose.Schema;
+
+
+
+app.use (bodyParser.urlencoded ({extended: true}));
+app.use(bodyParser.json());
+
+//SET STATIC FOLDER
+
 
 app.use(express.static('public'));
 
-//GET TOUR DATA FROM DATABASE AND SHOW IT TO READER
-
-app.get
+//SET UP MONGO DB
 
 
-//SUBMIT A NEW DATA ENTRY, A NEW TOUR 
+mongoose.connect("mongodb://localhost/tours");
+
+var tourSchema = new Schema ({
+    
+    name: String,
+    city: String,
+    neighborhood:String,
+    description: String,
+    duration: Number,
+    image: String
+    
+    
+    
+});
+
+
+var Tour = mongoose.model ("Tour", tourSchema);
+
+module.exports = mongoose.model('Tour', tourSchema);
+
+//SET UP  RESTFUL ROUTES
+
+//Get All tours
+
+app.get('/tours', function(req, res, next) {
+  Tour.find(function (err, tours) {
+    if (err) return next(err);
+    res.json(tours);
+  });
+});
+
+//Post A New Tour to Database
+
+app.post ('/tours', function (req, res) {
+          console.log (req.body);
+            res.json({ message: 'Tour created!' });
+    
+        
+    });
+
+
+// //GET TOUR DATA FROM DATABASE AND SHOW IT TO READER
 
 
 
-app.post 
+//show single tour
 
-//UPDATE TOUR DATA BY ADDING A COMMENT
+app.get('tours/:id', function (req, res) {
+  Tour.findById(req.params.id, function(err, tour){
+    if(err) res.send(err);
+    else
+    res.json(tour);
+  });
+});
 
-app.post
+
+// //SUBMIT A NEW DATA ENTRY, A NEW TOUR 
 
 
 
-//DELETE 
+// app.post ("/tours/new", function (req,res) {
+//     var name = req.body.name; 
+//     var city = req.body.city;
+//     var neighborhood = req.body.neighborhood;
+//     var description = req.body.description;
+//     var duration = req.body.duration;
+//     var image= req.body.image;
+    
+//     var newTour = {name:name, city:city, neigborhood:neighborhood, description:description, duration:duration, image:image}
+
+//     Tour.create(newTour, function (err, newlyCreated) {
+//               if (err) {
+//             console.log ("There was an error in creating the tour")
+//         } else
+//         res.redirect ("/tours");
+//     });
+//     }
+    
+    
+    
+    
+ 
+
+// //UPDATE TOUR DATA BY ADDING A COMMENT
+
+// app.post
+
+
+
+// //DELETE 
 
 
 
