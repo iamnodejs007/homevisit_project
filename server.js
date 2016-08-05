@@ -52,10 +52,13 @@ app.get('/tours', function(req, res, next) {
 });
 
 app.get('/tours/:id', function(req, res, next) {
-  Tour.findByID(function (err, tours) {
-    if (err) return next(err);
-    res.json(tours);
-  });
+  Tour.findById({_id: req.params.id}, function (err, foundTour) {
+    if (err) 
+      console.log (err);
+    else
+     res.json( foundTour);
+    
+    });
 });
 
 
