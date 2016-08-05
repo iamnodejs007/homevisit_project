@@ -108,7 +108,7 @@ id: $routeParams.id
     
 $scope.updateTour = function (tours){
 $scope.tours.$update();
-
+alert ()
 };
 }]);
 
