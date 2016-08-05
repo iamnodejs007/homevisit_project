@@ -109,6 +109,34 @@ app.get('tours/:id', function (req, res) {
 });
 
 
+//update a tour
+
+app.put("/tours/:id", function(req, res){
+  Tour.findByIdAndUpdate(req.params.id, req.body, function(err, tours){
+      if(err){
+          console.log (err);
+      } 
+        else
+        res.json(tours);
+      }
+  );
+});
+
+// app.delete("/tours/:id", function(req, res){
+//   Tour.findById(req.params.id, function(err, tours){
+//       if(err){
+//           console.log(err);
+//       } else {
+//           tours.remove();
+//               }
+//   }); 
+// });
+
+
+
+
+
+
 // //SUBMIT A NEW DATA ENTRY, A NEW TOUR 
 
 
