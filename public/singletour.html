@@ -1,0 +1,28 @@
+<div class = "container">
+
+<div class = "jumbotron">
+    
+    <h1>{{tours.name}}</h1>
+</div><!--End Jumbotron-->
+<div>
+
+
+<small>{{tours.city}}, {{tours.neighborhood}}</small>
+<h3>{{tours.description}}</h3>
+
+</div>
+<div>
+<button class= "btn btn-primary">Book this tour!</button> 
+</div>
+<hr>
+<div>
+ <a href = "/#/tours/{{tours._id}}/edit"  class="btn btn-primary">Edit this Tour</a>
+   <a class = "btn btn-danger" ng-click = "deleteTour (tour)">Delete This Tour</a>   
+</div>
+
+</div><!--End Container-->
+
+
+
+
+  

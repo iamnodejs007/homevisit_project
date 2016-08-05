@@ -1,0 +1,20 @@
+
+<H1> See All of Our Tours</H1>
+<div class = "jumbotron">
+    
+Have some time this weekend?   Take a tour of a home near you!
+</div><!--End Jumbotron-->
+
+<hr>
+
+<div class="container">
+<div ng-repeat = "tour in tours">
+
+<h1>{{tour.name}}</h1>
+
+<h2>{{tour.neighborhood}}, {{tour.city}}</h2> 
+
+<a href = "/#/tours/{{tour._id}}/"  class="btn btn-primary">More Info</a>
+
+</div><!--End ng-repeat div-->
+</div><!--End container-->
