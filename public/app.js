@@ -98,18 +98,23 @@ $scope.tours = data;
         
         
         
-tourApp.controller('editController', ['$scope', 'SingleService','$routeParams',
-function($scope, SingleService, $routeParams) {
+tourApp.controller('editController', ['$scope', 'SingleService','$routeParams', '$location',
+function ($scope, SingleService, $routeParams, $location) {
 
 $scope.tours = SingleService.get({
 id: $routeParams.id
 });
 
+
+
     
 $scope.updateTour = function (tours){
-$scope.tours.$update();
-alert ()
+$scope.tours.$update(function () { 
+        $location.path('/tours');
+    });
 };
+    
+
 }]);
 
 
@@ -144,7 +149,7 @@ alert ()
 //         console.log(data, status);
 //         $scope.tours = [];
 //               });
-    
+ 
 // }]);       
      
      
