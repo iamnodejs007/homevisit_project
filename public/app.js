@@ -59,7 +59,7 @@ tourApp.factory('SingleService', function ($resource){
 // });
     
 
-    // Controller
+    // CONTROLLERS
 tourApp.controller('toursController', ['$scope', 'TourService', '$http', function ($scope, TourService, $http) {
       TourService.success(function(data){
         $scope.tours = data;
@@ -105,15 +105,17 @@ $scope.tours = SingleService.get({
 id: $routeParams.id
 });
 
-
-
-    
 $scope.updateTour = function (tours){
 $scope.tours.$update(function () { 
         $location.path('/tours');
     });
 };
-    
+ 
+$scope.deleteTour = function (tours) {
+    $scope.tours.$delete(function () {
+        $location.path ('/tours');
+    });
+};    
 
 }]);
 

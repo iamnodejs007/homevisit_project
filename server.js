@@ -122,15 +122,14 @@ app.put("/tours/:id", function(req, res){
   );
 });
 
-// app.delete("/tours/:id", function(req, res){
-//   Tour.findById(req.params.id, function(err, tours){
-//       if(err){
-//           console.log(err);
-//       } else {
-//           tours.remove();
-//               }
-//   }); 
-// });
+app.delete("/tours/:id", function(req, res){
+  Tour.findByIdAndRemove(req.params.id, function(err, tours){
+      if(err){
+          console.log(err);
+      } else
+      console.log ("record removed!");
+  }); 
+});
 
 
 
