@@ -127,7 +127,9 @@ app.delete("/tours/:id", function(req, res){
       if(err){
           console.log(err);
       } else
+      res.sendStatus(204);
       console.log ("record removed!");
+      
   }); 
 });
 

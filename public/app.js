@@ -1,6 +1,6 @@
 /*global angular*/
 
-var tourApp = angular.module("tourApp", ['ngRoute', 'ngResource']);
+var tourApp = angular.module("tourApp", ['ngRoute', 'ngResource', 'ngMessages']);
 
 tourApp.config(function($routeProvider, $locationProvider)  {
 
@@ -113,7 +113,7 @@ $scope.tours.$update(function () {
  
 $scope.deleteTour = function (tours) {
     $scope.tours.$delete(function () {
-        $location.path ('/tours');
+        $location.path ('/');
     });
 };    
 
