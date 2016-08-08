@@ -113,7 +113,7 @@ $scope.tours.$update(function () {
  
 $scope.deleteTour = function (tours) {
     $scope.tours.$delete(function () {
-        $location.path ('/');
+        $location.path ('/tours');
     });
 };    
 

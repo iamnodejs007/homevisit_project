@@ -1,8 +1,9 @@
 
 <H1> See All of Our Tours</H1>
 <div class = "jumbotron">
-    
+<div class = "container centertext">    
 Have some time this weekend?   Take a tour of a home near you!
+</div><!--End Container-->
 </div><!--End Jumbotron-->
 
 <hr>
@@ -10,11 +11,13 @@ Have some time this weekend?   Take a tour of a home near you!
 <div class="container">
 <div ng-repeat = "tour in tours">
 
+<div class = "col-md-4">
 <h1>{{tour.name}}</h1>
 
-<h2>{{tour.neighborhood}}, {{tour.city}}</h2> 
+<h3>{{tour.neighborhood}}, {{tour.city}}</h3> 
+<h3>Duration: {{tour.duration}} hours</h3>
 
 <a href = "/#/tours/{{tour._id}}/"  class="btn btn-primary">More Info</a>
-
+</div><!--End col-md-4-div-->
 </div><!--End ng-repeat div-->
 </div><!--End container-->
