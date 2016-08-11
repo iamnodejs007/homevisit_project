@@ -34,6 +34,12 @@ $routeProvider
                templateUrl : 'edit.html',
                controller: 'editController'
            })
+           
+           //route for the photo credits from
+               .when ('/photocredits',  {
+               templateUrl : 'credits.html',
+               controller: 'editController'
+           })
             
     });
 
