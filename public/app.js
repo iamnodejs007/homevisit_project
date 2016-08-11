@@ -12,24 +12,25 @@ $routeProvider
                 controller  : 'jessController'
             })
 
-            // route for the single tour page
+            // route for the read single tour page
             .when('/tours/:id', {
                 templateUrl : 'singletour.html',
                 controller  : 'singleController'
             })
 
-            // route for the tours archive page
+            // route for the read all tours page
             .when('/tours', {
                 templateUrl : 'tours.html',
                 controller  : 'toursController'
             })
             
+            //route for the create new tour page
             .when('/addtour', {
                 templateUrl : 'addtour.html',
                 controller  : 'addController'
             })
-            
-           .when ('/tours/:id/edit',  {
+            //route for the edit tour form
+               .when ('/tours/:id/edit',  {
                templateUrl : 'edit.html',
                controller: 'editController'
            })
@@ -54,12 +55,14 @@ tourApp.factory('SingleService', function ($resource){
 
     
     
-//     tourApp.factory("PostService", function($resource) {
-//   return $resource("/tours/:id");
-// });
-    
+
 
     // CONTROLLERS
+    
+    
+//READ ALL TOURS CONTROLLER, = "toursController", uses factory "TourService"    
+    
+    
 tourApp.controller('toursController', ['$scope', 'TourService', '$http', function ($scope, TourService, $http) {
       TourService.success(function(data){
         $scope.tours = data;
@@ -72,12 +75,18 @@ tourApp.controller('toursController', ['$scope', 'TourService', '$http', functio
 }]);
 
 
+//CREATE NEW ENTERY CONTROLLER, = "addController", no factory, $uses "http.post"
+
  tourApp.controller ('addController', function ($scope, $http) {
       $scope.addTour = function (tour) {
     $http.post ("/tours", $scope.tour )
      }
      });
         
+
+
+
+//READ SINGLE ENTRY CONTROLLER = "singleController", uses factory "SingleService"
         
 tourApp.controller('singleController', ['$scope', 'SingleService','$routeParams',
 function($scope, SingleService, $routeParams) {
@@ -90,13 +99,9 @@ $scope.tours = data;
 
 });
 
-
-
-
 }]);
         
-        
-        
+//UPDATE AND DELETED TOUR CONTROLLER = "editController", uses factory 'SingleService'
         
 tourApp.controller('editController', ['$scope', 'SingleService','$routeParams', '$location',
 function ($scope, SingleService, $routeParams, $location) {
@@ -120,43 +125,7 @@ $scope.deleteTour = function (tours) {
 }]);
 
 
-// $scope.tours.$update = function() {
 
-
-// };        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-// tourApp.controller ('singleController', function ($scope, $http) {
-//       $http.get('/api/tours/' + id)
-//         .success(function(data) {
-//             $scope.tours = data;        })
-//         .error(function(data) {
-//             console.log('Error: ' + data);
-//         });
-
-      
-      
-//   tourApp.controller('singleTourController', ['$scope', 'singleTourService', '$http', function ($scope, singleTourService, $http) {
-//       singleTourService.success(function(data){
-//         $scope.tours = data;
-//         })
-//         .error(function(data, status){
-//         console.log(data, status);
-//         $scope.tours = [];
-//               });
- 
-// }]);       
-     
-     
-     
-     
      
      
      

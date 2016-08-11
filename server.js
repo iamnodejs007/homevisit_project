@@ -1,19 +1,30 @@
-//Initialize npm packages
+//INITIALIZE NPM MODULES
 
 var express = require("express");
 var mongoose= require ("mongoose");
 var bodyParser = require ("body-parser");
 var app = express();
-// var router  = express.Router ();
+var multer  = require('multer')
+var upload = multer({ dest: 'uploads/' })
 var Schema = mongoose.Schema;
 
 
+//SET UP BODY PARSER
 
 app.use (bodyParser.urlencoded ({extended: true}));
 app.use(bodyParser.json());
 
-//SET STATIC FOLDER
+//SETUP MULTER UPLAODS
 
+
+// app.use(multer({ dest: "./uploads/",
+// rename: function (fieldname, filename) {
+//   return filename;
+// },
+// }));
+
+
+//SET EXPRESS TO DELIVER STATIC ANGULAR FILES
 
 app.use(express.static('public'));
 
@@ -29,12 +40,15 @@ var tourSchema = new Schema ({
     neighborhood:String,
     description: String,
     duration: Number,
-    image: String
+    img: 
+      { data: Buffer, contentType: String }
+  
     
     
     
 });
 
+//INITIATE MONGOOSE MODEL FOR TOURS
 
 var Tour = mongoose.model ("Tour", tourSchema);
 
@@ -42,7 +56,8 @@ module.exports = mongoose.model('Tour', tourSchema);
 
 //SET UP  RESTFUL ROUTES
 
-//Get All tours
+
+//READ ALL TOURS
 
 app.get('/tours', function(req, res, next) {
   Tour.find(function (err, tours) {
@@ -62,7 +77,7 @@ app.get('/tours/:id', function(req, res, next) {
 });
 
 
-//Post A New Tour to Database
+//CREATE NEW TOUR
 
 app.post('/tours', function(req, res) {
   
@@ -94,11 +109,8 @@ app.post('/tours', function(req, res) {
 
 
 
-// //GET TOUR DATA FROM DATABASE AND SHOW IT TO READER
 
-
-
-//show single tour
+//READ SINGLE TOUR
 
 app.get('tours/:id', function (req, res) {
   Tour.findById(req.params.id, function(err, tour){
@@ -109,7 +121,7 @@ app.get('tours/:id', function (req, res) {
 });
 
 
-//update a tour
+//UPDATE SINGLE TOUR
 
 app.put("/tours/:id", function(req, res){
   Tour.findByIdAndUpdate(req.params.id, req.body, function(err, tours){
@@ -122,6 +134,8 @@ app.put("/tours/:id", function(req, res){
   );
 });
 
+//DELETE SINGLE TOUR
+
 app.delete("/tours/:id", function(req, res){
   Tour.findByIdAndRemove(req.params.id, function(err, tours){
       if(err){
@@ -132,53 +146,6 @@ app.delete("/tours/:id", function(req, res){
       
   }); 
 });
-
-
-
-
-
-
-// //SUBMIT A NEW DATA ENTRY, A NEW TOUR 
-
-
-
-// app.post ("/tours/new", function (req,res) {
-//     var name = req.body.name; 
-//     var city = req.body.city;
-//     var neighborhood = req.body.neighborhood;
-//     var description = req.body.description;
-//     var duration = req.body.duration;
-//     var image= req.body.image;
-    
-//     var newTour = {name:name, city:city, neigborhood:neighborhood, description:description, duration:duration, image:image}
-
-//     Tour.create(newTour, function (err, newlyCreated) {
-//               if (err) {
-//             console.log ("There was an error in creating the tour")
-//         } else
-//         res.redirect ("/tours");
-//     });
-//     }
-    
-    
-    
-    
- 
-
-// //UPDATE TOUR DATA BY ADDING A COMMENT
-
-// app.post
-
-
-
-// //DELETE 
-
-
-
-
-
-
-
 
 
 
