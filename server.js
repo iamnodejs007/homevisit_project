@@ -100,7 +100,7 @@ app.post('/tours', function(req, res) {
                       city: req.body.city,
                       duration: req.body.duration,
                       description: req.body.description,
-                      img: 'public/uploads/' + fileimage
+                      img: 'uploads/' + fileimage
 
                       
                     });

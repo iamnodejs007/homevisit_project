@@ -140,6 +140,9 @@ tourApp.controller('uploadController', ['$scope', 'Upload', '$timeout', function
     file.upload = Upload.upload({
       url: '/tours',
       METHOD: "POST",
+       headers: {
+          'Content-Type': 'multipart/form-data'
+        },
       data: {name: $scope.tour.name, city: $scope.tour.city, neighborhood: $scope.tour.neighborhood, duration: $scope.tour.duration, description: $scope.tour.descroption, img: $scope.tour.image},
     });
 
