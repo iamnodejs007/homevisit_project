@@ -27,7 +27,7 @@ $routeProvider
             //route for the create new tour page
             .when('/addtour', {
                 templateUrl : 'addtour.html',
-                controller  : 'addController'
+                controller  : 'uploadController'
             })
             //route for the edit tour form
                .when ('/tours/:id/edit',  {
@@ -138,9 +138,9 @@ $scope.deleteTour = function (tours) {
 tourApp.controller('uploadController', ['$scope', 'Upload', '$timeout', function ($scope, Upload, $timeout) {
     $scope.uploadPic = function(file) {
     file.upload = Upload.upload({
-      url: '/uploads',
+      url: '/tours',
       METHOD: "POST",
-      data: {username: $scope.username, images: images},
+      data: {name: $scope.tour.name, city: $scope.tour.city, neighborhood: $scope.tour.neighborhood, duration: $scope.tour.duration, description: $scope.tour.descroption, img: $scope.tour.image},
     });
 
     file.upload.then(function (response) {
