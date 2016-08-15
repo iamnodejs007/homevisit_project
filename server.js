@@ -4,8 +4,7 @@ var express = require("express");
 var mongoose= require ("mongoose");
 var bodyParser = require ("body-parser");
 var app = express();
-var multer  = require('multer')
-var upload = multer({ dest: 'uploads/' })
+var multer  = require('multer');
 var Schema = mongoose.Schema;
 
 
@@ -17,11 +16,23 @@ app.use(bodyParser.json());
 //SETUP MULTER UPLAODS
 
 
-// app.use(multer({ dest: "./uploads/",
-// rename: function (fieldname, filename) {
-//   return filename;
-// },
-// }));
+app.use(multer({
+    dest: 'public/uploads/',
+    rename: function(fieldname, filename) {
+      return filename + Date.now();
+    },
+    onFileUploadStart: function(file) {
+      console.log(file.originalname + ' is starting...');
+    },
+    onFileUploadComplete: function(file, req, res) {
+      console.log(file.fieldname + ' uploaded to ' + file.path);
+      var fileimage = file.name;
+      req.middlewareStorage = {
+        fileimage: fileimage
+      }
+    }
+  }));
+
 
 
 //SET EXPRESS TO DELIVER STATIC ANGULAR FILES
@@ -30,7 +41,7 @@ app.use(express.static('public'));
 
 //SET UP MONGO DB
 
-
+// process.env.DATABASEURL ||"";
 mongoose.connect("mongodb://localhost/tours");
 
 var tourSchema = new Schema ({
@@ -40,8 +51,7 @@ var tourSchema = new Schema ({
     neighborhood:String,
     description: String,
     duration: Number,
-    img: 
-      { data: Buffer, contentType: String }
+    img:  String
   
     
     
@@ -80,14 +90,18 @@ app.get('/tours/:id', function(req, res, next) {
 //CREATE NEW TOUR
 
 app.post('/tours', function(req, res) {
-  
-  var tour = new Tour({
+ 
+  var fileimage = req.middlewareStorage.fileimage 
+  var tour = new Tour 
+ ({
                       //need to add an email here 
                       name: req.body.name,
                       neighborhood: req.body.neighborhood,
                       city: req.body.city,
                       duration: req.body.duration,
-                      image:req.body.image,
+                      description: req.body.description,
+                      img: 'public/uploads/' + fileimage
+
                       
                     });
 
