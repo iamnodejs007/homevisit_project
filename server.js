@@ -13,8 +13,7 @@ var Schema = mongoose.Schema;
 app.use (bodyParser.urlencoded ({extended: true}));
 app.use(bodyParser.json());
 
-//SETUP MULTER UPLAODS
-
+//SETUP MULTER IMAGE UPLOADS
 
 app.use(multer({
     dest: 'public/uploads/',
@@ -39,9 +38,9 @@ app.use(multer({
 
 app.use(express.static('public'));
 
-//SET UP MONGO DB
+//CONNECT MONGO DB FOR DEV AND PRODUCTION/HEROKU ENVIRONMENTS
 
-// process.env.DATABASEURL ||"";
+// process.env.DATABASEURL ||"mongodb://localhost/tours;
 mongoose.connect("mongodb://localhost/tours");
 
 var tourSchema = new Schema ({
