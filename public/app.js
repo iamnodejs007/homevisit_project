@@ -26,7 +26,7 @@ $routeProvider
             
             //route for the create new tour page
             .when('/addtour', {
-                templateUrl : '/public/addtour.html',
+                templateUrl : 'addtour.html',
                 controller  : 'uploadController'
             })
             //route for the edit tour form
