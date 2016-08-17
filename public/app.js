@@ -1,6 +1,6 @@
 /*global angular*/
 
-var tourApp = angular.module("tourApp", ['ngRoute', 'ngResource', 'ngMessages']);
+var tourApp = angular.module("tourApp", ['ngRoute', 'ngResource', 'ngMessages','ngFileUpload']);
 
 tourApp.config(function($routeProvider, $locationProvider)  {
 
@@ -41,10 +41,10 @@ $routeProvider
                controller: 'editController'
            })
            
-        //   .when('/upload', {
-        //         templateUrl : '/upload.html',
-        //         controller  : 'uploadController'
-        //     });
+           .when('/upload', {
+                templateUrl : '/upload.html',
+                controller  : 'uploadController'
+            });
             
             
                     // $locationProvider.html5Mode(true);
