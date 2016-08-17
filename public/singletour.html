@@ -6,13 +6,20 @@
 </div><!--End Jumbotron-->
 <div>
 
-
-<small>{{tours.city}}, {{tours.neighborhood}}</small>
-<h3>{{tours.description}}</h3>
+<romw>
+<div class = "col-md-12" "centertext">    
+<img ng-src ="{{tours.img}}">
+</div> <!--End col-md-12-->
+</row>
+<h3><strong>City:</strong>{{tours.city}}<br>
+<strong>Neighborhood:</strong>{{tours.neighborhood}}<br>
+<strong>Host:</strong>{{tours.hostname}}<br>
+<strong>Duration: </strong>{{tours.duration}} hours</h3>
+{{tours.description}}
 
 </div>
 <div>
-<button class= "btn btn-primary">Book this tour!</button> 
+<button class= "btn btn-primary">Book This Tour!</button> 
 </div>
 <hr>
 <div>
