@@ -40,8 +40,8 @@ app.use(express.static('public'));
 
 //CONNECT MONGO DB FOR DEV AND PRODUCTION/HEROKU ENVIRONMENTS
 
-// process.env.DATABASEURL ||"mongodb://localhost/tours;
-mongoose.connect("mongodb://localhost/tours");
+
+mongoose.connect(process.env.DATABASEURL || "mongodb://localhost/tours");
 
 var tourSchema = new Schema ({
     
