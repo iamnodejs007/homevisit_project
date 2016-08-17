@@ -13,7 +13,7 @@
 <script type= "text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-route.js"></script>
 <script src ="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.7/angular-resource.min.js"></script>
 <script src = "https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.7/angular-messages.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" ></script>
+<script type= "text/javascript" src="/js/ui-bootstrap.js"></script> <!-- Bootstrap UI js -->
 <script type= "text/javascript" src="/js/file-upload-shim.js"></script> <!-- for no html5 browsers support -->
 <script type= "text/javascript" src="/js/ng-file-upload.js"></script>
 <script type= "text/javascript" src="app.js"></script>
@@ -42,9 +42,9 @@
       <ul class="nav navbar-nav">
         <li class="active"><a href="#/">Link <span class="sr-only">(current)</span></a></li>
         <li><a href="#/">Link</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-          <ul class="dropdown-menu">
+        <li class= dropdown>
+          <a href="#" dropdown-toggle> Dropdown <span class="caret"></span></a>
+          <ul class = "dropdown-menu">
             <li><a href="#">Action</a></li>
             <li><a href="#">Another action</a></li>
             <li><a href="#">Something else here</a></li>
@@ -64,17 +64,14 @@
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#/tours">See All Tours</a></li>
         <li><a href="#/addtour">Offer a Tour</a></li>
-        <li class="dropdown">
-          <a href="#/about" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#/about">About</a></li>
-            <li><a href="#/photocredits">Photo Credits</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-          </ul>
-        </li>
-      </ul>
+        <li uib-dropdown>
+            <a href="#/about" uib-dropdown-toggle>About Homevisit <b class="caret"></b></a>
+            <ul uib-dropdown-menu>
+              <li><a href="#/about">About</a></li>
+              <li><a href="#/photocredits">Photo Credits</a></li>
+              </ul>
+          </li>
+        </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
