@@ -1,6 +1,6 @@
 /*global angular*/
 
-var tourApp = angular.module("tourApp", ['ngRoute', 'ngResource', 'ngMessages']);
+var tourApp = angular.module("tourApp", ['ngRoute', 'ngResource', 'ngMessages', 'ngFileUpload']);
 
 tourApp.config(function($routeProvider, $locationProvider)  {
 
@@ -27,7 +27,7 @@ $routeProvider
             //route for the create new tour page
             .when('/addtour', {
                 templateUrl : 'addtour.html',
-                controller  : 'toursController'
+                controller  : 'uploadController'
             })
             //route for the edit tour form
                .when ('/tours/:id/edit',  {
@@ -138,32 +138,32 @@ $scope.deleteTour = function (tours) {
 
 }]);
 
-// tourApp.controller('uploadController', ['$scope', 'Upload', '$timeout', function ($scope, Upload, $timeout) {
-//     $scope.uploadPic = function(file) {
-//     file.upload = Upload.upload({
-//       url: '/tours',
-//       METHOD: "POST",
-//       headers: {
-//           'Content-Type': 'multipart/form-data'
-//         },
-//       data: {name: $scope.tour.name, city: $scope.tour.city, neighborhood: $scope.tour.neighborhood, duration: $scope.tour.duration, description: $scope.tour.descroption, img: $scope.tour.image},
-//     });
+tourApp.controller('uploadController', ['$scope', 'Upload', '$timeout', function ($scope, Upload, $timeout) {
+    $scope.uploadPic = function(file) {
+    file.upload = Upload.upload({
+      url: '/tours',
+      METHOD: "POST",
+      headers: {
+          'Content-Type': 'multipart/form-data'
+        },
+      data: {name: $scope.tour.name, city: $scope.tour.city, neighborhood: $scope.tour.neighborhood, duration: $scope.tour.duration, description: $scope.tour.descroption, img: $scope.tour.image},
+    });
 
-//     file.upload.then(function (response) {
-//       $timeout(function () {
-//         file.result = response.data;
-//       });
-//     }, function (response) {
-//       if (response.status > 0)
-//         $scope.errorMsg = response.status + ': ' + response.data;
-//     }, function (evt) {
-//       // Math.min is to fix IE which reports 200% sometimes
-//       file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
-//     });
-//     }
+    file.upload.then(function (response) {
+      $timeout(function () {
+        file.result = response.data;
+      });
+    }, function (response) {
+      if (response.status > 0)
+        $scope.errorMsg = response.status + ': ' + response.data;
+    }, function (evt) {
+      // Math.min is to fix IE which reports 200% sometimes
+      file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+    });
+    }
 
      
-// }]);
+}]);
      
 
     
