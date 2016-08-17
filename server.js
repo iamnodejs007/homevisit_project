@@ -40,7 +40,7 @@ app.use(express.static('public'));
 
 //CONNECT MONGO DB FOR DEV AND PRODUCTION/HEROKU ENVIRONMENTS
 
-mongoose.connect ("mongodb://jess:jessme@ds161485.mlab.com:61485/homevisit");
+mongoose.connect ("mongodb://Jess:jessme@ds161485.mlab.com:61485/homevisit");
 // mongoose.connect(process.env.DATABASEURL || "mongodb://localhost/tours");
 
 var tourSchema = new Schema ({
