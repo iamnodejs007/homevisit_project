@@ -26,7 +26,7 @@ $routeProvider
             
             //route for the create new tour page
             .when('/addtour', {
-                templateUrl : '/addtour.html',
+                templateUrl : '/public/addtour.html',
                 controller  : 'uploadController'
             })
             //route for the edit tour form
@@ -44,7 +44,10 @@ $routeProvider
            .when('/upload', {
                 templateUrl : '/upload.html',
                 controller  : 'uploadController'
-            })
+            });
+            
+            
+                    // $locationProvider.html5Mode(true);
             
     });
 
