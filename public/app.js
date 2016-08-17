@@ -8,41 +8,41 @@ $routeProvider
 
             // route for the home page
             .when('/', {
-                templateUrl : 'home.html',
+                templateUrl : '/home.html',
                 controller  : 'jessController'
             })
 
             // route for the read single tour page
             .when('/tours/:id', {
-                templateUrl : 'singletour.html',
+                templateUrl : '/singletour.html',
                 controller  : 'singleController'
             })
 
             // route for the read all tours page
             .when('/tours', {
-                templateUrl : 'tours.html',
+                templateUrl : '/tours.html',
                 controller  : 'toursController'
             })
             
             //route for the create new tour page
             .when('/addtour', {
-                templateUrl : 'addtour.html',
+                templateUrl : '/addtour.html',
                 controller  : 'uploadController'
             })
             //route for the edit tour form
                .when ('/tours/:id/edit',  {
-               templateUrl : 'edit.html',
+               templateUrl : '/edit.html',
                controller: 'editController'
            })
            
            //route for the photo credits from
                .when ('/photocredits',  {
-               templateUrl : 'credits.html',
+               templateUrl : '/credits.html',
                controller: 'editController'
            })
            
            .when('/upload', {
-                templateUrl : 'upload.html',
+                templateUrl : '/upload.html',
                 controller  : 'uploadController'
             })
             
