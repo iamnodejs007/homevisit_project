@@ -89,13 +89,14 @@ tourApp.controller('toursController', ['$scope', 'TourService', '$http', functio
 }]);
 
 
-//CREATE NEW ENTERY CONTROLLER, = "addController", no factory, $uses "http.post"
+//CREATE NEW ENTERY CONTROLLER, = "addController", no factory, $uses "http.post", **currently this is being done by uploadController
 
- tourApp.controller ('addController', function ($scope, $http) {
-      $scope.addTour = function (tour) {
-    $http.post ("/tours", $scope.tour )
-     }
-     });
+//  tourApp.controller ('addController', function ($scope, $http, $window, $location) {
+//       $scope.addTour = function (tour) {
+//     $http.post ("/tours", $scope.tour );
+//     $window.$location ('/tours');
+//     }
+//      });
         
 
 
@@ -117,8 +118,8 @@ $scope.tours = data;
         
 //UPDATE AND DELETED TOUR CONTROLLER = "editController", uses factory 'SingleService'
         
-tourApp.controller('editController', ['$scope', 'SingleService','$routeParams', '$location',
-function ($scope, SingleService, $routeParams, $location) {
+tourApp.controller('editController', ['$scope', 'SingleService','$routeParams', '$location', '$window',
+function ($scope, SingleService, $routeParams, $location, $window) {
 
 $scope.tours = SingleService.get({
 id: $routeParams.id
@@ -126,19 +127,21 @@ id: $routeParams.id
 
 $scope.updateTour = function (tours){
 $scope.tours.$update(function () { 
-        $location.path('/tours');
+        $window.location.href = '/#/tours';
+         $window.location.reload();
     });
 };
  
 $scope.deleteTour = function (tours) {
     $scope.tours.$delete(function () {
-        $location.path ('/tours');
+        $window.location.href = '/#/tours';
+        // $window.location.reload();
     });
 };    
 
 }]);
 
-tourApp.controller('uploadController', ['$scope', 'Upload', '$timeout', function ($scope, Upload, $timeout) {
+tourApp.controller('uploadController', ['$scope', 'Upload', '$timeout', '$window', '$location', function ($scope, Upload, $timeout, $window, $location) {
     $scope.uploadPic = function(file) {
     file.upload = Upload.upload({
       url: '/tours',
@@ -147,19 +150,35 @@ tourApp.controller('uploadController', ['$scope', 'Upload', '$timeout', function
           'Content-Type': 'multipart/form-data'
         },
       data: {name: $scope.tour.name, city: $scope.tour.city, neighborhood: $scope.tour.neighborhood, duration: $scope.tour.duration, description: $scope.tour.descroption, img: $scope.tour.image},
-    });
+    })
 
-    file.upload.then(function (response) {
-      $timeout(function () {
-        file.result = response.data;
-      });
-    }, function (response) {
-      if (response.status > 0)
-        $scope.errorMsg = response.status + ': ' + response.data;
-    }, function (evt) {
-      // Math.min is to fix IE which reports 200% sometimes
-      file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+
+       
+   
+   
+
+   
+   
+//THIS WORKS BUT I WANT TO TRY REFRESFHING WITHOUT RELOADING
+    .success (function () {
+        $window.location.href = '/#/tours';
+        //  $window.location.reload();
     });
+    // file.upload.then(function (response) {
+    //   $timeout(function () {
+    //     file.result = response.data;
+    //     $location.path ('/tours');
+    //   });
+    // }, function (response) {
+    //   if (response.status > 0)
+    //     $scope.errorMsg = response.status + ': ' + response.data;
+    // }, 
+    // function (evt) {
+    //   // Math.min is to fix IE which reports 200% sometimes
+    //   file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+      
+        
+    // });
     }
 
      
