@@ -134,7 +134,7 @@ $scope.tours.$update(function () {
  
 $scope.deleteTour = function (tours) {
     $scope.tours.$delete(function () {
-        window.location.href = '/#/tours';
+        $window.location.href = '/#/tours';
         // window.location.reload();
     });
 };    
@@ -162,7 +162,7 @@ tourApp.controller('uploadController', ['$scope', 'Upload', '$timeout', '$window
 //THIS WORKS BUT I WANT TO TRY REFRESFHING WITHOUT RELOADING
     .success (function () {
         $window.location.href = '/#/tours';
-        //  $window.location.reload();
+         $window.location.reload();
     });
     // file.upload.then(function (response) {
     //   $timeout(function () {
