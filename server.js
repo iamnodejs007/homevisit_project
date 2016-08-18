@@ -5,6 +5,7 @@ var mongoose= require ("mongoose");
 var bodyParser = require ("body-parser");
 var app = express();
 var multer  = require('multer');
+var cloudinary = require ('cloudinary');
 var Schema = mongoose.Schema;
 
 
@@ -17,21 +18,28 @@ app.use(bodyParser.json());
 
 app.use(multer({
     dest: 'public/uploads/',
-    rename: function(fieldname, filename) {
-      return filename + Date.now();
-    },
-    onFileUploadStart: function(file) {
-      console.log(file.originalname + ' is starting...');
-    },
-    onFileUploadComplete: function(file, req, res) {
-      console.log(file.fieldname + ' uploaded to ' + file.path);
-      var fileimage = file.name;
-      req.middlewareStorage = {
-        fileimage: fileimage
-      }
-    }
+    // rename: function(fieldname, filename) {
+    //   return filename + Date.now();
+    // },
+    // onFileUploadStart: function(file) {
+    //   console.log(file.originalname + ' is starting...');
+    // },
+    // onFileUploadComplete: function(file, req, res) {
+    //   console.log(file.fieldname + ' uploaded to ' + file.path);
+    //   var fileimage = file.name;
+    //   req.middlewareStorage = {
+    //     fileimage: fileimage
+    //   }
+    // }
   }));
 
+
+//SET UP CLOUDINARY STORAGE ---create environment variable here later
+cloudinary.config({ 
+  cloud_name: 'hpk05wffm', 
+  api_key: '655895572618464', 
+  api_secret: 'Zz79l7RwPt4ehUViNLJ2j8GSJnU' 
+});
 
 
 //SET EXPRESS TO DELIVER STATIC ANGULAR FILES
@@ -40,8 +48,8 @@ app.use(express.static('public'));
 
 //CONNECT MONGO DB FOR DEV AND PRODUCTION/HEROKU ENVIRONMENTS
 
-
-mongoose.connect(process.env.DATABASEURL || "mongodb://localhost/tours");
+mongoose.connect("mongodb://Jess:jessme@ds161485.mlab.com:61485/homevisit");
+// mongoose.connect(process.env.DATABASEURL || "mongodb://localhost/tours");
 
 var tourSchema = new Schema ({
     
@@ -86,20 +94,30 @@ app.get('/tours/:id', function(req, res, next) {
 });
 
 
-//CREATE NEW TOUR
+//CREATE NEW TOUR with CLOUDINARY
 
 app.post('/tours', function(req, res) {
  
-  var fileimage = req.middlewareStorage.fileimage 
+  // var fileimage = req.middlewareStorage.fileimage; 
+ 
+  cloudinary.uploader.upload(
+  req.files.file.path,
+  function(result) { console.log(result);
+  console.log('***************************');
+  console.log(result.secure_url);
+  
+
+  
+  
   var tour = new Tour 
- ({
+({
                       //need to add an email here 
                       name: req.body.name,
                       neighborhood: req.body.neighborhood,
                       city: req.body.city,
                       duration: req.body.duration,
                       description: req.body.description,
-                      img: '/uploads/' + fileimage
+                      img: result.secure_url
 
                       
                     });
@@ -118,7 +136,56 @@ app.post('/tours', function(req, res) {
         }           
 
     });
+    
+  });
 })
+
+
+
+
+//CREATE NEW TOUR NO CLOUDINARY
+
+// app.post('/tours', function(req, res) {
+ 
+//   var fileimage = req.middlewareStorage.fileimage; 
+  
+//   cloudinary.uploader.upload(
+//   fileimage,
+//   function(result) { console.log(result);
+//   console.log('***************************');
+//   console.log(result.secure_url);
+  
+// });
+  
+  
+//   var tour = new Tour 
+// ({
+//                       //need to add an email here 
+//                       name: req.body.name,
+//                       neighborhood: req.body.neighborhood,
+//                       city: req.body.city,
+//                       duration: req.body.duration,
+//                       description: req.body.description,
+//                       img: '/uploads/' + fileimage
+
+                      
+//                     });
+
+
+//     tour.save(function(err,resp) {
+//         if(err) {
+//             console.log(err);
+//             res.send({
+//                 message :'something went wrong'
+//             });
+//         } else {
+//             res.send({
+//                 message:'the tour has bees saved'
+//             });
+//         }           
+
+//     });
+// })
 
 
 
