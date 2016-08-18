@@ -134,8 +134,8 @@ $scope.tours.$update(function () {
  
 $scope.deleteTour = function (tours) {
     $scope.tours.$delete(function () {
-        $window.location.href = '/#/tours';
-        // $window.location.reload();
+        window.location.href = '/#/tours';
+        window.location.reload();
     });
 };    
 
