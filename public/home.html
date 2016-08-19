@@ -14,20 +14,37 @@
 <h1> Top Tours</h1>
 <hr>
 </div>  
+
+<div class="container">
+<div ng-repeat = "tour in tours  | limitTo: 3">
+
 <row>
-<div class = "col-md-4 centertext">
-    <img src = "/images/sunny.jpg" class= "img-thumbnail">
-    <h2>Natural Urban Loft</h2>
+<div class = "col-md-4">
+    <a href = "/#/tours/{{tour._id}}/" >
+   <img ng-src ="{{tour.img}}" class ="img-thumbnail" >
     
-</div> <!--End Div-->    
-<div class = "col-md-4 centertext">
-    <img src = "/images/norwegian.jpg" class= "img-thumbnail">
-     <h2>Norwegian Rustic</h2>
-</div> <!--End Div-->  
-<div class = "col-md-4 centertext">
-    <img src = "/images/cleankids.jpg" class= "img-thumbnail">
-     <h2>Clean Kids Space</h2>
-</div> <!--End Div-->     
+<h2>{{tour.name}}</h2>
+</a>
+<small>{{tour.neighborhood}}, {{tour.city}}</small> 
+</div><!--End col-md-4-div-->
+</div><!--End ng-repeat div-->
+</div><!--End container-->
 </row>
+
+
+<!--<div class = "col-md-4 centertext">-->
+<!--    <img src = "/images/sunny.jpg" class= "img-thumbnail">-->
+<!--    <h2>Natural Urban Loft</h2>-->
+    
+<!--</div> <!--End Div-->    
+<!--<div class = "col-md-4 centertext">-->
+<!--    <img src = "/images/norwegian.jpg" class= "img-thumbnail">-->
+<!--     <h2>Norwegian Rustic</h2>-->
+<!--</div> <!--End Div-->  
+<!--<div class = "col-md-4 centertext">-->
+<!--    <img src = "/images/cleankids.jpg" class= "img-thumbnail">-->
+<!--     <h2>Clean Kids Space</h2>-->
+<!--</div> <!--End Div-->     
+
 
 </div><!--End Container-->

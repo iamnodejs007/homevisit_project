@@ -9,7 +9,7 @@ $routeProvider
             // route for the home page
             .when('/', {
                 templateUrl : '/home.html',
-                controller  : 'tourAppController'
+                controller  : 'toursController'
             })
 
             // route for the read single tour page
