@@ -4,26 +4,22 @@
     
     <h1>{{tours.name}}</h1>
 </div><!--End Jumbotron-->
-<div>
 
-<romw>
-<div class = "col-md-12" "centertext">    
-<img ng-src ="{{tours.img}}" class = "img-responsive">
-</div> <!--End col-md-12-->
-</row>
-<h3><strong>City:</strong>{{tours.city}}<br>
-<strong>Neighborhood:</strong>{{tours.neighborhood}}<br>
-<strong>Host:</strong>{{tours.hostname}}<br>
+
+
+<div class = "col-md-12">    
+<img ng-src ="{{tours.img}}" class = "img-responsive" id= "singletourimage">
+
+<h3><strong>City:</strong> {{tours.city}}<br>
+<strong>Neighborhood:</strong> {{tours.neighborhood}}<br>
+<strong>Host:</strong> {{tours.hostname}}<br>
 <strong>Duration: </strong>{{tours.duration}} hours</h3>
-{{tours.description}}
+<p> {{tours.description}}</p>
+<button class= "btn btn-primary" id= "bookbtn">Book This Tour!</button> (This button is not working as this is a demo site :)  )
 
-</div>
-<div>
-<button class= "btn btn-primary">Book This Tour!</button> 
-</div>
 <hr>
-<div>
- <a href = "/#/tours/{{tours._id}}/edit"  class="btn btn-primary">Edit this Tour</a>
+
+ <a href = "/#/tours/{{tours._id}}/edit"  class="btn btn-primary" id= "editbtn">Edit this Tour</a> (Try this button!)
  
 </div>
 

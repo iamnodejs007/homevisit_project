@@ -46,11 +46,18 @@ hr {
 
 /*Style Add Tour Page*/
 
-#addtourjumbo {
-    
-    
+
+
+
+/*Style Single Tour Page*/
+
+#tourinfo {
+    padding-top: 25px;
 }
 
+#singeltourimage {
+  margin: 25px;
+}
 
 
 
