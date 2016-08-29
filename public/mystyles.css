@@ -61,7 +61,14 @@ hr {
 
 
 
+/*Style Tours Index*/
+
+#moreinfo {
+    margin-bottom: 30px;
+}
 
 
-
-
+.img-thumbnail { 
+    
+    max-height: 200px;
+}
