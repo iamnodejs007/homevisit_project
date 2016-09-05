@@ -22,19 +22,22 @@ app.use(multer({
   }));
 
 
-//SET UP CLOUDINARY IMAGE STORAGE CONFIG DATA
-
-cloudinary.config (process.env.CLOUDINARY_URL);
+//SET UP CLOUDINARY STORAGE ---create environment variable here later
+cloudinary.config({ 
+  cloud_name: 'hpk05wffm', 
+  api_key: '655895572618464', 
+  api_secret: 'Zz79l7RwPt4ehUViNLJ2j8GSJnU' 
+});
 
 
 //SET EXPRESS TO DELIVER STATIC ANGULAR FILES
 
 app.use(express.static('public'));
 
-//CONNECT MONGO DB
+//CONNECT MONGO DB FOR DEV AND PRODUCTION/HEROKU ENVIRONMENTS
 
-mongoose.connect(process.env.DATABASEURL);
-
+mongoose.connect("mongodb://Jess:jessme@ds161485.mlab.com:61485/homevisit");
+// mongoose.connect(process.env.DATABASEURL || "mongodb://localhost/tours");
 
 var tourSchema = new Schema ({
     
@@ -55,8 +58,6 @@ var tourSchema = new Schema ({
 var Tour = mongoose.model ("Tour", tourSchema);
 
 module.exports = mongoose.model('Tour', tourSchema);
-
-
 
 //SET UP  RESTFUL ROUTES
 
@@ -129,6 +130,50 @@ app.post('/tours', function(req, res) {
 
 
 
+
+//CREATE NEW TOUR NO CLOUDINARY
+
+// app.post('/tours', function(req, res) {
+ 
+//   var fileimage = req.middlewareStorage.fileimage; 
+  
+//   cloudinary.uploader.upload(
+//   fileimage,
+//   function(result) { console.log(result);
+//   console.log('***************************');
+//   console.log(result.secure_url);
+  
+// });
+  
+  
+//   var tour = new Tour 
+// ({
+//                       //need to add an email here 
+//                       name: req.body.name,
+//                       neighborhood: req.body.neighborhood,
+//                       city: req.body.city,
+//                       duration: req.body.duration,
+//                       description: req.body.description,
+//                       img: '/uploads/' + fileimage
+
+                      
+//                     });
+
+
+//     tour.save(function(err,resp) {
+//         if(err) {
+//             console.log(err);
+//             res.send({
+//                 message :'something went wrong'
+//             });
+//         } else {
+//             res.send({
+//                 message:'the tour has bees saved'
+//             });
+//         }           
+
+//     });
+// })
 
 
 
