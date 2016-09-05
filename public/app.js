@@ -1,6 +1,6 @@
 /*global angular*/
 
-var tourApp = angular.module("tourApp", ['ngRoute', 'ngResource', 'ngMessages', 'ngFileUpload', 'ui.bootstrap']);
+var tourApp = angular.module("tourApp", ['ngRoute', 'ngResource', 'ngMessages', 'ngFileUpload', 'ui.bootstrap', 'angular.filter']);
 
 tourApp.config(function($routeProvider, $locationProvider)  {
 
@@ -40,15 +40,6 @@ $routeProvider
                templateUrl : '/credits.html',
                controller: 'editController'
            })
-           
-        //   .when('/upload', {
-        //         templateUrl : '/upload.html',
-        //         controller  : 'uploadController'
-        //     });
-            
-            
-                    // $locationProvider.html5Mode(true);
-            
     });
 
 
@@ -71,7 +62,7 @@ tourApp.factory('SingleService', function ($resource){
     
 
 
-    // CONTROLLERS
+// CONTROLLERS
     
     
 //READ ALL TOURS CONTROLLER, = "toursController", uses factory "TourService"    
@@ -89,15 +80,6 @@ tourApp.controller('toursController', ['$scope', 'TourService', '$http', functio
 }]);
 
 
-//CREATE NEW ENTERY CONTROLLER, = "addController", no factory, $uses "http.post", **currently this is being done by uploadController
-
-//  tourApp.controller ('addController', function ($scope, $http, $window, $location) {
-//       $scope.addTour = function (tour) {
-//     $http.post ("/tours", $scope.tour );
-//     $window.$location ('/tours');
-//     }
-//      });
-        
 
 
 
@@ -152,33 +134,11 @@ tourApp.controller('uploadController', ['$scope', 'Upload', '$timeout', '$window
       data: {name: $scope.tour.name, city: $scope.tour.city, neighborhood: $scope.tour.neighborhood, duration: $scope.tour.duration, description: $scope.tour.description, file: $scope.tour.image},
     })
 
-
-       
-   
-   
-
-   
-   
-//THIS WORKS BUT I WANT TO TRY REFRESFHING WITHOUT RELOADING
     .success (function () {
         $window.location.href = '/#/tours';
          $window.location.reload();
     });
-    // file.upload.then(function (response) {
-    //   $timeout(function () {
-    //     file.result = response.data;
-    //     $location.path ('/tours');
-    //   });
-    // }, function (response) {
-    //   if (response.status > 0)
-    //     $scope.errorMsg = response.status + ': ' + response.data;
-    // }, 
-    // function (evt) {
-    //   // Math.min is to fix IE which reports 200% sometimes
-    //   file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
-      
-        
-    // });
+    
     }
 
      
