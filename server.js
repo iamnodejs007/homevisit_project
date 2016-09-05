@@ -23,11 +23,10 @@ app.use(multer({
 
 
 //SET UP CLOUDINARY STORAGE ---create environment variable here later
-cloudinary.config({ 
-  cloud_name: 'hpk05wffm', 
-  api_key: '655895572618464', 
-  api_secret: 'Zz79l7RwPt4ehUViNLJ2j8GSJnU' 
-});
+cloudinary.config(process.env.CLOUDINARY_URL);
+
+
+
 
 
 //SET EXPRESS TO DELIVER STATIC ANGULAR FILES
@@ -131,49 +130,7 @@ app.post('/tours', function(req, res) {
 
 
 
-//CREATE NEW TOUR NO CLOUDINARY
 
-// app.post('/tours', function(req, res) {
- 
-//   var fileimage = req.middlewareStorage.fileimage; 
-  
-//   cloudinary.uploader.upload(
-//   fileimage,
-//   function(result) { console.log(result);
-//   console.log('***************************');
-//   console.log(result.secure_url);
-  
-// });
-  
-  
-//   var tour = new Tour 
-// ({
-//                       //need to add an email here 
-//                       name: req.body.name,
-//                       neighborhood: req.body.neighborhood,
-//                       city: req.body.city,
-//                       duration: req.body.duration,
-//                       description: req.body.description,
-//                       img: '/uploads/' + fileimage
-
-                      
-//                     });
-
-
-//     tour.save(function(err,resp) {
-//         if(err) {
-//             console.log(err);
-//             res.send({
-//                 message :'something went wrong'
-//             });
-//         } else {
-//             res.send({
-//                 message:'the tour has bees saved'
-//             });
-//         }           
-
-//     });
-// })
 
 
 
