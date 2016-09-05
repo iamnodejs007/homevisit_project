@@ -18,19 +18,7 @@ app.use(bodyParser.json());
 
 app.use(multer({
     dest: 'public/uploads/',
-    // rename: function(fieldname, filename) {
-    //   return filename + Date.now();
-    // },
-    // onFileUploadStart: function(file) {
-    //   console.log(file.originalname + ' is starting...');
-    // },
-    // onFileUploadComplete: function(file, req, res) {
-    //   console.log(file.fieldname + ' uploaded to ' + file.path);
-    //   var fileimage = file.name;
-    //   req.middlewareStorage = {
-    //     fileimage: fileimage
-    //   }
-    // }
+    
   }));
 
 
@@ -46,10 +34,10 @@ cloudinary.config({
 
 app.use(express.static('public'));
 
-//CONNECT MONGO DB FOR DEV AND PRODUCTION/HEROKU ENVIRONMENTS
+//CONNECT MONGO DB
 
-mongoose.connect("mongodb://Jess:jessme@ds161485.mlab.com:61485/homevisit");
-// mongoose.connect(process.env.DATABASEURL || "mongodb://localhost/tours");
+mongoose.connect(process.env.DATABASEURL);
+
 
 var tourSchema = new Schema ({
     
