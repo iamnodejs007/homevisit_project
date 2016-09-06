@@ -1,6 +1,6 @@
 /*global angular*/
 
-var tourApp = angular.module("tourApp", ['ngRoute', 'ngResource', 'ngMessages', 'ngFileUpload', 'ui.bootstrap', 'angular.filter']);
+var tourApp = angular.module("tourApp", ['ngRoute', 'ngResource', 'ngMessages', 'ngFileUpload', 'ui.bootstrap']);
 
 tourApp.config(function($routeProvider, $locationProvider)  {
 
