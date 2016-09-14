@@ -1,3 +1,7 @@
+
+
+
+
 h1  {
     font-family: "Raleway";
 }
@@ -18,6 +22,8 @@ hr {
 .centertext {
     text-align: center;
 }
+
+
 
 .addspace {
     height: 100px;
@@ -46,7 +52,9 @@ hr {
 
 /*Style Add Tour Page*/
 
-
+.thumb {
+    padding: 15px;
+}
 
 
 /*Style Single Tour Page*/
