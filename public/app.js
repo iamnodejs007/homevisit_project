@@ -1,4 +1,4 @@
-/*global angular*/
+
 
 var tourApp = angular.module("tourApp", ['ngRoute', 'ngResource', 'ngMessages', 'ngFileUpload', 'ui.bootstrap']);
 
@@ -15,7 +15,7 @@ $routeProvider
             // route for the read single tour page
             .when('/tours/:id', {
                 templateUrl : '/singletour.html',
-                controller  : 'singleController'
+                controller  : 'editController'
             })
 
             // route for the read all tours page
@@ -44,11 +44,9 @@ $routeProvider
 
 
 //SERVICES AND FACTORIES
-tourApp.factory('TourService', ['$http', function($http){
-      return $http.get('/tours');
-    }])
+
     
-tourApp.factory('SingleService', function ($resource){
+tourApp.factory('TourResource', function ($resource){
       return $resource('/tours/:id', {id:"@_id"},{
       update: {
         method: 'PUT'
@@ -65,17 +63,11 @@ tourApp.factory('SingleService', function ($resource){
 // CONTROLLERS
     
     
-//READ ALL TOURS CONTROLLER, = "toursController", uses factory "TourService"    
+//READ ALL TOURS CONTROLLER, = "toursController", uses factory "TourResource"    
     
     
-tourApp.controller('toursController', ['$scope', 'TourService', '$http', function ($scope, TourService, $http) {
-      TourService.success(function(data){
-        $scope.tours = data;
-        })
-        .error(function(data, status){
-        console.log(data, status);
-        $scope.tours = [];
-              });
+tourApp.controller('toursController', ['$scope', 'TourResource', '$http',  function ($scope, TourResource, $http) {
+   $scope.tours = TourResource.query();
     
 }]);
 
@@ -83,41 +75,41 @@ tourApp.controller('toursController', ['$scope', 'TourService', '$http', functio
 
 
 
-//READ SINGLE ENTRY CONTROLLER = "singleController", uses factory "SingleService"
+//READ SINGLE ENTRY CONTROLLER = "singleController", uses factory "TourResource"
         
-tourApp.controller('singleController', ['$scope', 'SingleService','$routeParams',
-function($scope, SingleService, $routeParams) {
-$scope.tours = {};
-SingleService.get({
+tourApp.controller('singleController', ['$scope', 'TourResource','$routeParams',
+function($scope, TourResource, $routeParams) {
+
+
+$scope.tours = TourResource.get({
 id: $routeParams.id
-}, function (data) {
-$scope.tours = data;
-
-
 });
+
+
 
 }]);
         
-//UPDATE AND DELETED TOUR CONTROLLER = "editController", uses factory 'SingleService'
+//UPDATE AND DELETED TOUR CONTROLLER = "editController", uses factory 'TourResource'
         
-tourApp.controller('editController', ['$scope', 'SingleService','$routeParams', '$location', '$window',
-function ($scope, SingleService, $routeParams, $location, $window) {
+tourApp.controller('editController', ['$scope', 'TourResource','$routeParams', '$location', '$window',
+function ($scope, TourResource, $routeParams, $location, $window) {
 
-$scope.tours = SingleService.get({
+
+$scope.tours = TourResource.get({
 id: $routeParams.id
 });
 
-$scope.updateTour = function (tours){
-$scope.tours.$update(function () { 
-        $window.location.href = '/#/tours';
-         $window.location.reload();
+$scope.updateTour = function (){
+$scope.tours.$update().then(function () {
+  
+    $location.path("/tours/" + $routeParams.id);
     });
 };
  
-$scope.deleteTour = function (tours) {
-    $scope.tours.$delete(function () {
-        $window.location.href = '/#/tours';
-        window.location.reload();
+$scope.deleteTour = function() {
+    $scope.tours.$delete().then(function () {
+         $location.path("/tours");
+        
     });
 };    
 
@@ -134,13 +126,16 @@ tourApp.controller('uploadController', ['$scope', 'Upload', '$timeout', '$window
       data: {name: $scope.tour.name, city: $scope.tour.city, neighborhood: $scope.tour.neighborhood, duration: $scope.tour.duration, description: $scope.tour.description, file: $scope.tour.image},
     })
 
-    .success (function () {
+    .then(function () {
         $window.location.href = '/#/tours';
-         $window.location.reload();
+         
     });
     
     }
-
+    
+    $scope.remove = function(){
+            	delete $scope.tour.image;
+            }
      
 }]);
      
