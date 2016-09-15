@@ -16,7 +16,7 @@
 
 <div class="container">
     
- 
+ <button class = "btn btn-success" ng-click ="resetFilters()">Reset All Filters</button>
 <div class = "row">    
 <div class = "col-xs-6 citysearch">
 <h3 class = "centertext">Search By Tour Length:</h3>
@@ -44,7 +44,6 @@
 
 <h4>{{tour.neighborhood}}, {{tour.city}}</h4> 
 <h4>Duration: {{tour.duration}} hours</h4>
-
 <a href = "/#/tours/{{tour._id}}/"  class="btn btn-primary" id= "moreinfo">More Info</a>
 </div><!--End col-md-4-div-->
 </div> <!--End row autoclear div>

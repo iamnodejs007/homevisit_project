@@ -68,6 +68,10 @@ tourApp.factory('TourResource', function ($resource){
     
 tourApp.controller('toursController', ['$scope', 'TourResource', '$http',  function ($scope, TourResource, $http) {
    $scope.tours = TourResource.query();
+   $scope.resetFilters = function (){
+        $scope.activeDuration = "";
+        $scope.activeCity = "";
+   };
     
 }]);
 
@@ -84,8 +88,6 @@ function($scope, TourResource, $routeParams) {
 $scope.tours = TourResource.get({
 id: $routeParams.id
 });
-
-
 
 }]);
         
@@ -116,6 +118,8 @@ $scope.deleteTour = function() {
 }]);
 
 tourApp.controller('uploadController', ['$scope', 'Upload', '$timeout', '$window', '$location', function ($scope, Upload, $timeout, $window, $location) {
+    
+  
     $scope.uploadPic = function(file) {
     file.upload = Upload.upload({
       url: '/tours',
@@ -123,7 +127,7 @@ tourApp.controller('uploadController', ['$scope', 'Upload', '$timeout', '$window
       headers: {
           'Content-Type': 'multipart/form-data'
         },
-      data: {name: $scope.tour.name, city: $scope.tour.city, neighborhood: $scope.tour.neighborhood, duration: $scope.tour.duration, description: $scope.tour.description, file: $scope.tour.image},
+      data: {name: $scope.tour.name, city: $scope.tour.city, neighborhood: $scope.tour.neighborhood, duration: $scope.tour.duration, categories: $scope.categories, description: $scope.tour.description, file: $scope.tour.image},
     })
 
     .then(function () {

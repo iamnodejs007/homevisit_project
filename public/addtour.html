@@ -46,6 +46,22 @@
     <div class= "alert alert-danger" ng-show ="addForm.description.$invalid && addForm.description.$dirty">Please tell us a bit about your home!</div>   
       
   </div>
+  <div class ="form-group">
+  
+  
+     
+      <input type ="checkbox" ng-model ="categories.midcentury" name = "categories"/> Mid-Century
+      
+     
+      <input type ="checkbox" ng-model ="categories.contemporary" name = "categories"/> Contemporary
+      </label>  
+     
+      <input type ="checkbox" ng-model ="categories.green" name = "categories"/> Green
+       {{categories}}
+ </div>
+ 
+ 
+ 
   <div class="form-group">
     <label for="duration">Tour Duration (In Hours)*</label>
     <input type="text" ng-model = "tour.duration" class="form-control" id="duration" placeholder="How long will your tour last in hours? Example:  1.5" name ="duration" required>

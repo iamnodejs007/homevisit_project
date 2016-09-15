@@ -43,14 +43,15 @@ var tourSchema = new Schema ({
     name: String,
     city: String,
     neighborhood:String,
+    host: String,
+    categories: Array,
     description: String,
     duration: Number,
     img:  String
   
-    
-    
-    
-});
+
+});     
+
 
 //INITIATE MONGOOSE MODEL FOR TOURS
 
@@ -101,11 +102,13 @@ app.post('/tours', function(req, res) {
                       //need to add an email here 
                       name: req.body.name,
                       neighborhood: req.body.neighborhood,
+                      host:req.body.host,
+                      categories: req.body.categories,
                       city: req.body.city,
                       duration: req.body.duration,
                       description: req.body.description,
                       img: result.secure_url
-
+                    
                       
                     });
 
