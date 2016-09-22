@@ -63,11 +63,13 @@ hr {
     padding-top: 25px;
 }
 
-#singeltourimage {
-  margin: 25px;
+#singletourimage {
+  margin-bottom: 25px;
 }
 
-
+.btn-padded {
+    margin-right: 5px;
+}
 
 /*Style Tours Index*/
 
