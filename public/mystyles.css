@@ -76,9 +76,24 @@ hr {
 }
 
 
-.img-thumbnail { 
+ .img-tile { 
     
-    max-height: 250px;
+    height: 250px;
+    width: 100%;
+    object-fit: cover;
+    
+   
+    }
+    
+@media(max-width: 992px) {
+	.img-thumbnail {
+		height: auto;
+	}
+}    
+
+.imagecard {
+    padding: 10px;
+    
 }
 
 .citysearch {
