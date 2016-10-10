@@ -1,0 +1,98 @@
+
+
+
+<!--INTRO MESSAGE HERE-->
+
+<div class ="jumbotron" id= "addtourjumbo">
+<h2 class = "centertext">Do you have a uniquely-decorated home you want to share with other design lovers ?</h2>
+
+<p class = "centertext">To apply to give a home tour, please fill out all of the information below, including at least one photo.  </p>
+</div><!--End Jumbotron-->
+
+
+<!--FORM BEGINS HERE-->
+
+<div class = "container">
+<div class = "row">
+<div class = "col-md-6 col-md-offset-3">
+<form name = "addForm" ng-submit = "uploadPic (file)" novalidate>
+    
+    <h2 class = "centertext">Tell us about About Your Tour</h2>
+    
+    
+<div class="form-group">
+    <label for="Tourname">Tour Name (Be Creative!)*</label>
+    <input type="text" ng-model="tour.name" class="form-control" id="tourname" placeholder="Tour Name" name ="name" required>
+  <div class= "alert alert-danger" ng-show = "addForm.name.$invalid && addForm.name.$dirty">Please enter a name for your tour so people can find it!</div>
+  </div>
+  
+  <h3>Help users find a tour they love!  Tell us about where you live, what our visitors will see on your tour, and how long it will last!</h3>
+ 
+ <div class="form-group">
+    <label for="neighborhood">Your Neighborhood*</label>
+    <input type="text" ng-model= "tour.neighborhood" class="form-control" id="yourneighborhood" placeholder="Your Neighborhood" name ="neighborhood" required>
+  <div class= "alert alert-danger" ng-show = "addForm.neighborhood.$invalid && addForm.neighborhood.$dirty">Which neighborhood you live in in your city?</div>
+  </div>
+  
+  
+  <div class="form-group">
+    <label for="city">Your City*</label>
+    <input type="text" ng-model = "tour.city" class="form-control" id="yourcity" placeholder="Your City" name ="city" required>
+    <div class= "alert alert-danger" ng-show = "addForm.city.$invalid && addForm.city.$dirty">Which city do you live in?</div>  
+  </div>
+  <div class="form-group">
+    <label for="description">Describe your tour*</label>
+    <textarea  ng-model = "tour.description" class="form-control" id="description" placeholder="Describe your tour in 150 words or less" name ="description" form = "addForm" required> </textarea>
+    <div class= "alert alert-danger" ng-show ="addForm.description.$invalid && addForm.description.$dirty">Please tell us a bit about your home!</div>   
+      
+  </div>
+  <div class ="form-group">
+  
+  
+     
+      <input type ="checkbox" ng-model ="categories.midcentury" name = "categories"/> Mid-Century
+      
+     
+      <input type ="checkbox" ng-model ="categories.contemporary" name = "categories"/> Contemporary
+      </label>  
+     
+      <input type ="checkbox" ng-model ="categories.green" name = "categories"/> Green
+      
+ </div>
+ 
+ 
+ 
+  <div class="form-group">
+    <label for="duration">Tour Duration (In Hours)*</label>
+    <input type="text" ng-model = "tour.duration" class="form-control" id="duration" placeholder="How long will your tour last in hours? Example:  1.5" name ="duration" required>
+  <div class= "alert alert-danger" ng-show = "addForm.duration.$invalid && addForm.duration.$dirty">Give a rough estimate how long your tour will last!</div>
+  </div>
+  <div class = "form-group">
+    <label for ="image">Please Upload an Image of Your Tour, max 2MB</label>
+    <input type="file" ngf-select ng-model="tour.image" name="image"    
+             accept="image/*" ngf-max-size="2MB" required
+             ngf-model-invalid="errorFile">
+      <div class= "alert alert-danger" ng-show="addForm.image.$dirty && addForm.image.$error.required">Our visitors would like to see an image of your home!</div><br>
+      <div class= "alert alert-danger" ng-show="addForm.image.$error.maxSize">This file is too large: 
+         please upload an image of max 2M</div> 
+    <img ng-show="addForm.file.$valid" ngf-thumbnail="tour.image" class="img-thumbnail">
+    <button class = "btn btn-danger thumb" ng-click="tour.image= null" ng-show="tour.image">Remove</button>
+      
+    </fieldset>
+    
+    
+  </div> 
+  
+  
+   <button type="submit"  class="btn btn-default">Submit</button>
+</form>
+</div><!--End col-md-6 col-md-offset-3-->
+</div><!--End Row-->
+
+
+</div><!--End Container-->
+
+
+
+
+ 
