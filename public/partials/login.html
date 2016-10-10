@@ -1,5 +1,6 @@
 <div class = "container">
-<h1>Please Log In Here!</h1>
+<div class = "col-md-4 col-md-offset-4">   
+<h1>Please Log In!</h1>
  <div ng-show="error" class="alert alert-danger">{{errorMessage}}</div>
 <form name = "loginForm" ng-submit = "logIn()">
     <div class = "form-group">
@@ -11,5 +12,5 @@
     <button type = "submit" class = "btn btn-success">Log In</button>
     
 </form>
-
+</div> <!--End col-md-6 offset 3-->
 </div><!--End Container-->
