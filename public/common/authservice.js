@@ -105,7 +105,7 @@ function register(username, password) {
   $http.post('/register',
     {username: username, password: password})
    
-    .then(function (data, status) {
+    .success(function (data, status) {
       if(status === 200 && data.status){
         deferred.resolve();
       } else {

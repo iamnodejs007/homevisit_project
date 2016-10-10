@@ -11,10 +11,12 @@ angular.module('tourApp').controller('registerController',
       // call register from service
       AuthService.register($scope.user.username, $scope.user.password)
         // handle success
-        .then(function () {
-          $location.path('/login');
-          $scope.disabled = false;
+        .then(function () {  
           $scope.registerForm = {};
+          $scope.disabled = false;
+          $location.path('/');
+          
+        
         })
         // handle error
         .catch(function () {
