@@ -19,11 +19,11 @@
 <script type ="text/javascript" src= "/js/angular-filter.js"></script>
 
 <script type= "text/javascript" src="app.js"></script>
-<script type= "text/javascript" src="/common/authservice.js"></script>
 
+<script type= "text/javascript" src="/common/authservice.js"></script>
 <script type= "text/javascript" src="/common/tourfactory.js"></script>
 <script type= "text/javascript" src="/common/routes.js"></script>
-
+<script type= "text/javascript" src="/common/mynavbar.js"></script>
 
 <script type= "text/javascript" src="/app/auth/registercontroller.js"></script>
 <script type= "text/javascript" src="/app/auth/logincontroller.js"></script>
@@ -34,64 +34,17 @@
 <script type= "text/javascript" src="/app/tours_crud/uploadcontroller.js"></script>
 <script type= "text/javascript" src="/app/tours_crud/singlecontroller.js"></script>
 
-
-
-
-
 <link href='https://fonts.googleapis.com/css?family=Neuton:400,700' rel='stylesheet' type='text/css'>
 <link href="https://fonts.googleapis.com/css?family=Shrikhand|Raleway" rel="stylesheet"> 
 </head>
 
 <body>
-    
+   
+   <my-nav-bar class = "ng-cloak"></my-nav-bar> 
   
-    <nav class="navbar navbar-default">
-  <div class="container" ng-cloak>
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" 
-      ng-init="navCollapsed = true"
-      ng-click="navCollapsed = !navCollapsed">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="/#/">Hometours</a>
-    </div>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" ng-class="!navCollapsed && 'in'" ng-click="navCollapsed=true" ng-controller="authbuttonsController">
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#/tours">See All Tours</a></li>
-        <li><a href="#/addtour">Offer a Tour</a></li>
-        <li uib-dropdown>
-            <a href="#/about" uib-dropdown-toggle>About Hometours <b class="caret"></b></a>
-            <ul uib-dropdown-menu>
-              <li><a href="#/about">About</a></li>
-              <li><a href="#/photocredits">Photo Credits</a></li>
-              </ul>
-          </li>
-          <li role="separator" class="divider"></li>
-          <li><a href="#/login" ng-show="!$root.userLoggedIn" =>Login </a></li>
-          <li><a href="#/register" ng-show="!$root.userLoggedIn">Sign Up</a></li>
-          <li><button ng-click='logout()' ng-show = "$root.userLoggedIn" class ="navbar-form btn btn-success btn-navbar">Logout</button></li>
-        </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
-        
-    
-    
-        <div ng-view ng-cloak>
-            
-            
-       
-        
-
-  
-    
-</div> <!-- End Main Div-->
+    <div ng-view class ="ng-cloak">
+    </div> <!-- End Main Div-->
 
 <div id = "footer" class = "container centertext">
     <hr>
