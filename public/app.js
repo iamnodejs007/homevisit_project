@@ -1,63 +1,23 @@
 
 
-var tourApp = angular.module("tourApp", ['ngRoute', 'ngResource', 'ngMessages', 'ngFileUpload', 'ui.bootstrap']);
+var tourApp = angular.module("tourApp", ['ngRoute', 'ngResource', 'ngFileUpload', 'ui.bootstrap']);
 
-tourApp.config(function($routeProvider, $locationProvider)  {
-
-$routeProvider
-
-            // route for the home page
-            .when('/', {
-                templateUrl : '/home.html',
-                controller  : 'toursController'
-            })
-
-            // route for the read single tour page
-            .when('/tours/:id', {
-                templateUrl : '/singletour.html',
-                controller  : 'editController'
-            })
-
-            // route for the read all tours page
-            .when('/tours', {
-                templateUrl : '/tours.html',
-                controller  : 'toursController'
-            })
-            
-            //route for the create new tour page
-            .when('/addtour', {
-                templateUrl : 'addtour.html',
-                controller  : 'uploadController'
-            })
-            //route for the edit tour form
-               .when ('/tours/:id/edit',  {
-               templateUrl : '/edit.html',
-               controller: 'editController'
-           })
-           
-           //route for the photo credits from
-               .when ('/photocredits',  {
-               templateUrl : '/credits.html',
-               controller: 'editController'
-           })
-    });
-
-
-//SERVICES AND FACTORIES
-
-    
-tourApp.factory('TourResource', function ($resource){
-      return $resource('/tours/:id', {id:"@_id"},{
-      update: {
-        method: 'PUT'
-      }}
-
-);  
-
+tourApp.run(function ($rootScope, $location, $route, AuthService) {
+  $rootScope.$on('$routeChangeStart',
+    function (event, next, current) {
+      AuthService.getUserStatus()
+      .then(function(){
+        if (next.access.restricted && !AuthService.isLoggedIn()){
+          $location.path('/login');
+          $route.reload();
+        }
+      });
+  });
 });
 
-    
-    
+
+
+
 
 
 // CONTROLLERS
@@ -143,5 +103,12 @@ tourApp.controller('uploadController', ['$scope', 'Upload', '$timeout', '$window
      
 }]);
      
+     
 
-    
+
+
+
+
+
+     
+     

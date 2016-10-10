@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app = "tourApp">
+<html ng-app = "tourApp" class = "ng-cloak">
 
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,7 +19,15 @@
 <script type ="text/javascript" src= "/js/angular-filter.js"></script>
 
 <script type= "text/javascript" src="app.js"></script>
+<script type= "text/javascript" src="/common/authservice.js"></script>
 
+<script type= "text/javascript" src="/common/tourfactory.js"></script>
+<script type= "text/javascript" src="/common/routes.js"></script>
+
+
+<script type= "text/javascript" src="/app/auth/registercontroller.js"></script>
+<script type= "text/javascript" src="/app/auth/logincontroller.js"></script>
+<script type= "text/javascript" src="/app/auth/logoutcontroller.js"></script>
 
 
 
@@ -36,9 +44,9 @@
 
 <body>
     
-      
+  
     <nav class="navbar navbar-default">
-  <div class="container-fluid" ng-cloak>
+  <div class="container" ng-cloak>
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" 
@@ -53,34 +61,21 @@
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" ng-class="!navCollapsed && 'in'" ng-click="navCollapsed=true">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#/">Link <span class="sr-only">(current)</span></a></li>
-        <li><a href="#/">Link</a></li>
-        <li class= dropdown>
-          <a href="#" dropdown-toggle> Dropdown <span class="caret"></span></a>
-          <ul class = "dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">One more separated link</a></li>
-          </ul>
-        </li>
-      </ul>
-      
+    <div class="collapse navbar-collapse" ng-class="!navCollapsed && 'in'" ng-click="navCollapsed=true" ng-controller="authbuttonsController">
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#/tours">See All Tours</a></li>
         <li><a href="#/addtour">Offer a Tour</a></li>
         <li uib-dropdown>
-            <a href="#/about" uib-dropdown-toggle>About Homevisit <b class="caret"></b></a>
+            <a href="#/about" uib-dropdown-toggle>About Hometours <b class="caret"></b></a>
             <ul uib-dropdown-menu>
               <li><a href="#/about">About</a></li>
               <li><a href="#/photocredits">Photo Credits</a></li>
               </ul>
           </li>
+          <li role="separator" class="divider"></li>
+          <li><a href="#/login" ng-show="!$root.userLoggedIn" =>Login </a></li>
+          <li><a href="#/register" ng-show="!$root.userLoggedIn">Sign Up</a></li>
+          <li><button ng-click='logout()' ng-show = "$root.userLoggedIn" class ="navbar-form btn btn-success btn-navbar">Logout</button></li>
         </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

@@ -1,5 +1,7 @@
 
-
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
 
 
 h1  {
@@ -11,22 +13,22 @@ h2 {
 }
 
 
-
-
 hr {
-    size: 2px #fff;
+    size: 2px solid #fff;
 }
-
-
 
 .centertext {
     text-align: center;
 }
 
 
-
 .addspace {
     height: 100px;
+}
+
+.btn-navbar {
+    padding: 5px;
+    margin-top: 10px;
 }
 
 

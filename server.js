@@ -6,7 +6,26 @@ var bodyParser = require ("body-parser");
 var app = express();
 var multer  = require('multer');
 var cloudinary = require ('cloudinary');
+var passport = require('passport');
+var LocalStrategy = require ('passport-local');
+var User = require('./server/models/user');
+var Tour = require('./server/models/tours');
 var Schema = mongoose.Schema;
+
+//Set Up Passport
+
+app.use(require('express-session')({
+  secret: "hometours rocks!",
+  resave: false,
+  saveUninitialized: false
+  
+}));
+
+app.use(passport.initialize());
+app.use (passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 
 //SET UP BODY PARSER
@@ -26,9 +45,6 @@ app.use(multer({
 cloudinary.config(process.env.CLOUDINARY_URL);
 
 
-
-
-
 //SET EXPRESS TO DELIVER STATIC ANGULAR FILES
 
 app.use(express.static('public'));
@@ -38,26 +54,6 @@ app.use(express.static('public'));
 
 mongoose.connect(process.env.DATABASEURL);
 
-var tourSchema = new Schema ({
-    
-    name: String,
-    city: String,
-    neighborhood:String,
-    host: String,
-    categories: Array,
-    description: String,
-    duration: Number,
-    img:  String
-  
-
-});     
-
-
-//INITIATE MONGOOSE MODEL FOR TOURS
-
-var Tour = mongoose.model ("Tour", tourSchema);
-
-module.exports = mongoose.model('Tour', tourSchema);
 
 //SET UP  RESTFUL ROUTES
 
@@ -174,6 +170,72 @@ app.delete("/tours/:id", function(req, res){
       
   }); 
 });
+
+
+//AUTH ROUTES
+
+app.post("/register", function(req, res) {
+  var newUser =  new User({username: req.body.username});
+  User.register(newUser, req.body.password, function (err,user) {
+    if(err) {
+      return res.status(500).json({
+        err: err});
+
+    }
+    passport.authenticate('local')(req, res, function () {
+      return res.status(200).json({
+        status: 'Registration successful!'
+      });
+
+    });
+  });
+ });
+ 
+app.post('/login', function(req, res, next) {
+  passport.authenticate('local', function(err, user, info) {
+    if (err) {
+      return next(err);
+    }
+    if (!user) {
+      return res.status(401).json({
+        err: info
+      });
+    }
+    req.logIn(user, function(err) {
+      if (err) {
+        return res.status(500).json({
+          err: 'Could not log in user'
+        });
+      }
+      res.status(200).json({
+        status: 'Login successful!'
+      });
+    });
+  })(req, res, next);
+});
+
+ 
+app.get('/logout', function(req, res) {
+      req.logout();
+      res.status(200).json({
+      status: 'Bye!'
+  });
+  
+});
+
+app.get('/status', function(req, res) {
+  
+      if (!req.isAuthenticated()) {
+    return res.status(200).json({
+      status: false
+    });
+  }
+  res.status(200).json({
+    status: true
+  });
+});
+
+
 
 
 
