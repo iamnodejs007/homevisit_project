@@ -31,13 +31,19 @@ hr {
     margin-top: 10px;
 }
 
+.userspan {
+    color:  green;
+}
+
 
 /*Style index.html main page*/
 
 #frontpagejumbo {
-    background-image: url("images/door2s.jpg");
+    background-image: url(images/littledoors.jpg);
     background-size: cover;
-    height: 100%;
+    background-repeat: no-repeat;
+    background-position: 0% 60%;
+
 }
 
 #transparentjumbolayer {
@@ -104,3 +110,8 @@ hr {
     padding: 25px;
     
 }
+
+.navbar {
+    margin-bottom: 0px;
+}
+

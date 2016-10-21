@@ -6,7 +6,15 @@ var tourSchema = new mongoose.Schema ({
     name: String,
     city: String,
     neighborhood:String,
-    host: String,
+    host: {
+        id: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User"
+        },
+        username: String
+        
+    },
+    
     categories: Array,
     description: String,
     duration: Number,

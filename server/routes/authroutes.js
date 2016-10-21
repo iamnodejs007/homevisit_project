@@ -91,7 +91,8 @@ router.get('/status', function(req, res) {
     });
   }
   res.status(200).json({
-    status: true
+    status: true,
+    user: req.user.username
   });
 });
 

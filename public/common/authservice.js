@@ -30,9 +30,11 @@ angular.module('tourApp').factory('AuthService',
   .success(function (data) {
     if(data.status){
       $rootScope.userLoggedIn = true;
+      $rootScope.username = data.user;
       user = true;
     } else {
       $rootScope.userLoggedIn = false;
+      $rootScope.username = "";
       user = false;
     }
   })
@@ -56,6 +58,7 @@ function login(username, password) {
     .success(function (data, status) {
       if(status === 200 && data.status){
         user = true;
+        // $rootScope.username = data.user;
         deferred.resolve();
       } else {
         user = false;

@@ -9,7 +9,52 @@
 <link rel="stylesheet" href="mystyles.css">
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+<!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>-->
+<!--<script type= "text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-route.js"></script>-->
+<!--<script src ="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.7/angular-resource.min.js"></script>-->
+<!--<script src = "https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.7/angular-messages.min.js"></script>-->
+<!--<script type= "text/javascript" src="/js/ui-bootstrap.js"></script> <!-- Bootstrap UI js -->
+<!--<script type= "text/javascript" src="/js/file-upload-shim.js"></script> <!-- for no html5 browsers support -->
+<!--<script type= "text/javascript" src="/js/ng-file-upload.js"></script>-->
+<!--<script type ="text/javascript" src= "/js/angular-filter.js"></script>-->
+
+<!--<script type= "text/javascript" src="app.js"></script>-->
+
+<!--<script type= "text/javascript" src="/common/authservice.js"></script>-->
+<!--<script type= "text/javascript" src="/common/tourfactory.js"></script>-->
+<!--<script type= "text/javascript" src="/common/routes.js"></script>-->
+<!--<script type= "text/javascript" src="/common/mynavbar.js"></script>-->
+
+<!--<script type= "text/javascript" src="/app/auth/registercontroller.js"></script>-->
+<!--<script type= "text/javascript" src="/app/auth/logincontroller.js"></script>-->
+<!--<script type= "text/javascript" src="/app/auth/logoutcontroller.js"></script>-->
+
+<!--<script type= "text/javascript" src="/app/tours_crud/tourscontroller.js"></script>-->
+<!--<script type= "text/javascript" src="/app/tours_crud/editcontroller.js"></script>-->
+<!--<script type= "text/javascript" src="/app/tours_crud/uploadcontroller.js"></script>-->
+<!--<script type= "text/javascript" src="/app/tours_crud/singlecontroller.js"></script>-->
+
+<link href='https://fonts.googleapis.com/css?family=Neuton:400,700' rel='stylesheet' type='text/css'>
+<link href="https://fonts.googleapis.com/css?family=Shrikhand|Raleway" rel="stylesheet"> 
+</head>
+
+<body>
+   
+   <my-nav-bar class = "ng-cloak"></my-nav-bar> 
+  
+
+    <div ng-view class ="ng-cloak">
+    </div> <!-- End Main Div-->
+
+<div id = "footer" class = "container centertext">
+    <hr>
+    <p>Copyright 2016 Hometours. Terms and Conditions</p>
+    <br>
+    
+</div><!--End Container-->
+ 
+ 
+ <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
 <script type= "text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-route.js"></script>
 <script src ="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.7/angular-resource.min.js"></script>
 <script src = "https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.7/angular-messages.min.js"></script>
@@ -32,27 +77,7 @@
 <script type= "text/javascript" src="/app/tours_crud/tourscontroller.js"></script>
 <script type= "text/javascript" src="/app/tours_crud/editcontroller.js"></script>
 <script type= "text/javascript" src="/app/tours_crud/uploadcontroller.js"></script>
-<script type= "text/javascript" src="/app/tours_crud/singlecontroller.js"></script>
-
-<link href='https://fonts.googleapis.com/css?family=Neuton:400,700' rel='stylesheet' type='text/css'>
-<link href="https://fonts.googleapis.com/css?family=Shrikhand|Raleway" rel="stylesheet"> 
-</head>
-
-<body>
-   
-   <my-nav-bar class = "ng-cloak"></my-nav-bar> 
-  
-
-    <div ng-view class ="ng-cloak">
-    </div> <!-- End Main Div-->
-
-<div id = "footer" class = "container centertext">
-    <hr>
-    <p>Copyright 2016 Hometours. Terms and Conditions</p>
-    <br>
-    
-</div><!--End Container-->
-    
+<script type= "text/javascript" src="/app/tours_crud/singlecontroller.js"></script>   
 </body>
 
 </html>

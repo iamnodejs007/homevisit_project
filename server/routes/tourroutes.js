@@ -52,14 +52,17 @@ router.post('/tours', function(req, res) {
   console.log(result.secure_url);
   
 
+console.log (req.user.username);
   
   
   var tour = new Tour 
 ({
                       //need to add an email here 
+                      host: {id: req.user._id,
+                      username: req.user.username
+                      },
                       name: req.body.name,
                       neighborhood: req.body.neighborhood,
-                      host:req.body.host,
                       categories: req.body.categories,
                       city: req.body.city,
                       duration: req.body.duration,
@@ -131,6 +134,11 @@ router.delete("/tours/:id", function(req, res){
       
   }); 
 });
+
+
+//MIDDLEWARE
+
+
 
 
 
